@@ -366,7 +366,7 @@ mod test {
     fn setup() -> (Env, OrderContractClient<'static>) {
         let env = Env::default();
         env.mock_all_auths();
-        let cid = env.register(None, OrderContract);
+        let cid = env.register(OrderContract, ());
         let client = OrderContractClient::new(&env, &cid);
         (env, client)
     }

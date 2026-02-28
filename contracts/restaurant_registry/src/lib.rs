@@ -252,7 +252,7 @@ mod test {
     fn setup() -> (Env, RestaurantRegistryClient<'static>) {
         let env = Env::default();
         env.mock_all_auths();
-        let contract_id = env.register(None, RestaurantRegistry);
+        let contract_id = env.register(RestaurantRegistry, ());
         let client = RestaurantRegistryClient::new(&env, &contract_id);
         (env, client)
     }

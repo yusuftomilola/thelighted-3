@@ -368,7 +368,7 @@ mod test {
     ) {
         let env = Env::default();
         env.mock_all_auths();
-        let cid = env.register(None, PaymentContract);
+        let cid = env.register(PaymentContract, ());
         let client = PaymentContractClient::new(&env, &cid);
         let admin = Address::generate(&env);
         let treasury = Address::generate(&env);
