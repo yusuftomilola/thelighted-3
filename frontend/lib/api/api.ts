@@ -6,6 +6,7 @@ import type {
   InstagramPost,
 } from "@/lib/types";
 import { GalleryImage } from "./admin";
+import { AdminUser } from "@/lib/types/user";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:9001/api";
 const RESTAURANT_ID = process.env.NEXT_PUBLIC_RESTAURANT_ID;
@@ -114,6 +115,43 @@ export const contactApi = {
 export const instagramApi = {
   getPosts: (limit: number = 9) =>
     fetchApi<InstagramPost[]>(addRestaurantId(`/instagram?limit=${limit}`)),
+
+  getById: (id: string) =>
+    fetchApi<InstagramPost>(addRestaurantId(`/instagram/${id}`)),
+
+  create: async (data: Omit<InstagramPost, 'id' | 'timestamp'>) => {
+    const response = await fetch(`${API_URL}${addRestaurantId('/instagram')}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || 'Failed to create Instagram post');
+    }
+
+    return response.json();
+  },
+
+  update: async (id: string, data: Partial<InstagramPost>) => {
+    const response = await fetch(`${API_URL}${addRestaurantId(`/instagram/${id}`)}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || 'Failed to update Instagram post');
+    }
+
+    return response.json();
+  },
 };
 
 // Gallery API
@@ -149,6 +187,30 @@ export const qrApi = {
     }),
 };
 
+// Admin API
+export const adminApi = {
+  login: async (credentials: { username: string; password: string }) => {
+    const response = await fetch(`${API_URL}/admin/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || "Login failed");
+    }
+
+    const data = await response.json();
+    return {
+      token: data.token,
+      user: data.user as AdminUser,
+    };
+  },
+};
+
 const apiClient = {
   menu: menuApi,
   trending: trendingApi,
@@ -157,6 +219,7 @@ const apiClient = {
   gallery: galleryApi,
   analytics: analyticsApi,
   qr: qrApi,
+  admin: adminApi,
 };
 
 export default apiClient;
