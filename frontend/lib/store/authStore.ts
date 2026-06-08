@@ -63,3 +63,23 @@ export const useAuthStore = create<AuthState>()(
     },
   ),
 );
+
+export const useAuthState = () =>
+  useAuthStore((state) => ({
+    user: state.user,
+    token: state.token,
+    isAuthenticated: state.isAuthenticated,
+    isLoading: state.isLoading,
+  }));
+
+export const useAuthActions = () =>
+  useAuthStore((state) => ({
+    setAuth: state.setAuth,
+    clearAuth: state.clearAuth,
+    setLoading: state.setLoading,
+    updateUser: state.updateUser,
+    initializeAuth: () => {
+      const token = state.token;
+      if (!token) state.clearAuth();
+    },
+  }));

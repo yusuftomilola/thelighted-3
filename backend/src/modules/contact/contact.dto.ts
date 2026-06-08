@@ -1,33 +1,29 @@
-import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsNotEmpty,
-  IsString,
-  Matches,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 
-export class LinkBankAccountDto {
-  @ApiProperty({ example: 'Example Bank' })
+export class CreateContactDto {
   @IsString()
   @IsNotEmpty()
-  @MaxLength(120)
-  bankName: string;
+  @MaxLength(255)
+  name: string;
 
-  @ApiProperty({ example: 'Jane Doe' })
+  @IsEmail()
+  email: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  phone?: string;
+
   @IsString()
   @IsNotEmpty()
-  @MaxLength(120)
-  accountHolderName: string;
+  @MaxLength(500)
+  subject: string;
 
-  @ApiProperty({ example: '0123456789' })
   @IsString()
-  @Matches(/^\d{8,17}$/)
-  accountNumber: string;
+  @IsNotEmpty()
+  message: string;
 
-  @ApiProperty({ example: '110000000' })
   @IsString()
-  @MinLength(6)
-  @MaxLength(32)
-  routingNumber: string;
+  @IsNotEmpty()
+  restaurantId: string;
 }

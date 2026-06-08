@@ -102,7 +102,7 @@ export default function GalleryClient() {
             <GalleryTable
               images={images}
               onToggleVisibility={(id) => toggleMutation.mutate(id)}
-              onDelete={(image) => setDeleteTarget(image)}
+              onDelete={async (id) => setDeleteTarget(images.find((img) => img.id === id) ?? null)}
             />
           </>
         )}

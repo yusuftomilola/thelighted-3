@@ -123,7 +123,7 @@ export function ChangePasswordForm({ onSubmit, isSubmitting }: ChangePasswordFor
         <ul className="mt-2 list-disc space-y-1 pl-5">
           <li>Use a strong, unique password</li>
           <li>Include letters, numbers, and special characters</li>
-          <li>Don't reuse passwords from other accounts</li>
+          <li>Don&apos;t reuse passwords from other accounts</li>
         </ul>
       </div>
 

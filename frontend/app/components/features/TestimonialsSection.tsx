@@ -29,7 +29,7 @@ export const TestimonialsSection: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-lg text-text-muted max-w-2xl mx-auto"
           >
-            Don't just take our word for it - hear from our satisfied customers
+            Don&apos;t just take our word for it - hear from our satisfied customers
           </motion.p>
         </div>
 
@@ -96,7 +96,7 @@ const TestimonialCard: React.FC<{
 
         {/* Comment */}
         <p className="text-text-muted mb-4 flex-grow leading-relaxed">
-          "{testimonial.comment}"
+          &quot;{testimonial.comment}&quot;
         </p>
 
         {/* Author */}

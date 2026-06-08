@@ -75,7 +75,7 @@ export default function ContactsClient() {
     setModalOpen(true);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     setDeleteId(id);
   };
 

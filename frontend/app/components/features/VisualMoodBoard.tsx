@@ -175,7 +175,7 @@ export const VisualMoodBoard: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-4"
           >
-            What's Your Food Mood?
+            What&apos;s Your Food Mood?
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

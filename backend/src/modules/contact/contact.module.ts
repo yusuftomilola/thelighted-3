@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Otp } from './otp.entity';
-import { OtpsService } from './otps.service';
+import { ContactSubmission } from './contact-submission.entity';
+import { ContactService } from './contact.service';
 
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([Otp])],
-  providers: [OtpsService],
-  exports: [OtpsService],
+  imports: [TypeOrmModule.forFeature([ContactSubmission])],
+  providers: [ContactService],
+  exports: [ContactService],
 })
-export class OtpsModule {}
+export class ContactModule {}

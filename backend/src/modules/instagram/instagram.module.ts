@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Otp } from './otp.entity';
-import { OtpsService } from './otps.service';
+import { InstagramPost } from './instagram-post.entity';
+import { InstagramService } from './instagram.service';
 
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([Otp])],
-  providers: [OtpsService],
-  exports: [OtpsService],
+  imports: [TypeOrmModule.forFeature([InstagramPost])],
+  providers: [InstagramService],
+  exports: [InstagramService],
 })
-export class OtpsModule {}
+export class InstagramModule {}

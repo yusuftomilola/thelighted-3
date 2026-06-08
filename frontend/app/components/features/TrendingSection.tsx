@@ -75,14 +75,14 @@ export const TrendingSection: React.FC = () => {
               <>
                 <Crown className="w-5 h-5 text-primary" />
                 <span className="text-sm font-medium text-primary">
-                  Chef's Favorites
+                  Chef&apos;s Favorites
                 </span>
               </>
             ) : (
               <>
                 <Flame className="w-5 h-5 text-primary" />
                 <span className="text-sm font-medium text-primary">
-                  What's Trending Now
+                  What&apos;s Trending Now
                 </span>
               </>
             )}

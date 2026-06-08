@@ -119,7 +119,7 @@ export const ContactForm: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-lg text-text-muted max-w-2xl mx-auto"
           >
-            Have a question or want to make a reservation? We'd love to hear
+            Have a question or want to make a reservation? We&apos;d love to hear
             from you!
           </motion.p>
         </div>
@@ -249,7 +249,7 @@ export const ContactForm: React.FC = () => {
                 >
                   <CheckCircle className="w-5 h-5 text-green-600" />
                   <p className="text-green-800">
-                    Message sent successfully! We'll get back to you soon.
+                    Message sent successfully! We&apos;ll get back to you soon.
                   </p>
                 </motion.div>
               )}

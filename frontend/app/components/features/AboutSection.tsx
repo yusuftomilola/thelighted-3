@@ -44,21 +44,21 @@ export const AboutSection: React.FC = () => {
               </p>
               <p>
                 Our journey started with a small team of passionate chefs who
-                believed that great food brings people together. Today, we're
+                believed that great food brings people together. Today, we&apos;re
                 proud to serve thousands of satisfied customers who return not
                 just for the food, but for the warmth and authenticity that
                 defines our restaurant.
               </p>
               <p>
-                Every dish we serve tells a story - from our chef's heritage
+                Every dish we serve tells a story - from our chef&apos;s heritage
                 recipes passed down through generations to innovative creations
                 that push the boundaries of flavor. We source only the finest
                 ingredients, work with local farmers, and prepare everything
                 with the care it deserves.
               </p>
               <p>
-                Whether you're joining us for a casual lunch, a special
-                celebration, or a romantic dinner, we're committed to making
+                Whether you&apos;re joining us for a casual lunch, a special
+                celebration, or a romantic dinner, we&apos;re committed to making
                 every visit memorable.
               </p>
             </div>

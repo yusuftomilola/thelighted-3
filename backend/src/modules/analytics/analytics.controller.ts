@@ -1,73 +1,20 @@
-// backend/src/modules/auth/auth.controller.ts
-import {
-  Controller,
-  Post,
-  Get,
-  Body,
-  UseGuards,
-  Request,
-  HttpCode,
-  HttpStatus,
-  Patch,
-} from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginDto, RegisterAdminDto, ChangePasswordDto } from './auth.dto';
-import { JwtAuthGuard } from './jwt-auth.guard';
-import { UpdateRegisterAdminDto } from './update-auth.dto';
+import { Controller, Post, Body, UseGuards, Request } from '@nestjs/common';
+import { AnalyticsService } from './analytics.service';
+import { TrackEventDto } from './analytics.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
-@Controller('auth')
-export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+@Controller('analytics')
+export class AnalyticsController {
+  constructor(private readonly analyticsService: AnalyticsService) {}
 
-  @Post('login')
-  @HttpCode(HttpStatus.OK)
-  async login(@Body() loginDto: LoginDto) {
-    return await this.authService.login(loginDto);
+  @Post('track')
+  async trackEvent(@Body() dto: TrackEventDto) {
+    return this.analyticsService.trackEvent(dto);
   }
 
-  @Post('register')
-  @HttpCode(HttpStatus.CREATED)
-  async register(@Body() registerAdminDto: RegisterAdminDto) {
-    return await this.authService.register(registerAdminDto);
-  }
-
-  @Post('change-password')
+  @Post('summary')
   @UseGuards(JwtAuthGuard)
-  @HttpCode(HttpStatus.OK)
-  async changePassword(
-    @Request() req,
-    @Body() changePasswordDto: ChangePasswordDto,
-  ) {
-    const restaurantId = req.user.restaurantId;
-    return await this.authService.changePassword(
-      req.user.id,
-      changePasswordDto,
-      restaurantId,
-    );
-  }
-
-  @Get('me')
-  @UseGuards(JwtAuthGuard)
-  async getProfile(@Request() req) {
-    return req.user;
-  }
-
-  @Post('logout')
-  @UseGuards(JwtAuthGuard)
-  @HttpCode(HttpStatus.OK)
-  async logout() {
-    // In the app, you might want to blacklist the token
-    return { message: 'Logged out successfully' };
-  }
-
-  @Patch('profile')
-  @UseGuards(JwtAuthGuard)
-  async updateUser(@Request() req, @Body() data: UpdateRegisterAdminDto) {
-    const restaurantId = req.user.restaurantId;
-    return await this.authService.updateUserProfile(
-      req.user.id,
-      data,
-      restaurantId,
-    );
+  async getSummary(@Request() req) {
+    return this.analyticsService.getSummary(req.user.restaurantId);
   }
 }

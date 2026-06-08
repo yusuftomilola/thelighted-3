@@ -1,33 +1,28 @@
-import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsNotEmpty,
-  IsString,
-  Matches,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl } from 'class-validator';
 
-export class LinkBankAccountDto {
-  @ApiProperty({ example: 'Example Bank' })
+export class CreateInstagramPostDto {
+  @IsUrl()
+  imageUrl: string;
+
   @IsString()
   @IsNotEmpty()
-  @MaxLength(120)
-  bankName: string;
+  caption: string;
 
-  @ApiProperty({ example: 'Jane Doe' })
+  @IsUrl()
+  permalink: string;
+
+  @IsDateString()
+  timestamp: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isVisible?: boolean;
+
+  @IsOptional()
+  @IsNumber()
+  displayOrder?: number;
+
   @IsString()
   @IsNotEmpty()
-  @MaxLength(120)
-  accountHolderName: string;
-
-  @ApiProperty({ example: '0123456789' })
-  @IsString()
-  @Matches(/^\d{8,17}$/)
-  accountNumber: string;
-
-  @ApiProperty({ example: '110000000' })
-  @IsString()
-  @MinLength(6)
-  @MaxLength(32)
-  routingNumber: string;
+  restaurantId: string;
 }

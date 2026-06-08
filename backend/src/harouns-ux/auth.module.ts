@@ -20,7 +20,7 @@ import { Restaurant } from '../modules/restaurant/restaurant.entity';
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET') || 'your-secret-key',
         signOptions: {
-          expiresIn: configService.get<string>('JWT_EXPIRES_IN') || '1d'
+          expiresIn: (configService.get<string>('JWT_EXPIRES_IN') || '1d') as any
         }
       })
     })
