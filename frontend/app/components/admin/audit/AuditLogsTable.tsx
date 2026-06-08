@@ -13,7 +13,7 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
-import { Button } from "../ui/Button";
+import { Button } from "../../ui/Button";
 
 interface AuditLogsTableProps {
   data: any[];
